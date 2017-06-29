@@ -1,0 +1,10 @@
+DROP TABLE user;
+CREATE TABLE user (
+ id int(12) AUTO_INCREMENT PRIMARY KEY,
+ name varchar(20),
+ password varchar(100),
+ type int(3),
+ role varchar(30)
+);
+
+insert into user(name,password,type,role) values('admin',HEX(AES_ENCRYPT('admin','jiangkewei2.22')),0,'admin');

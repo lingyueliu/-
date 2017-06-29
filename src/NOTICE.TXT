@@ -1,0 +1,25 @@
+1，java.io.File.lastModified()返回表示此抽象路径名的文件的最后修改时间（long类型）：
+	数据库使用bigint，数据访问使用jdbcType="NUMBER"，数据对象使用Long；
+	数据库使用timestamp，数据访问使用jdbcType="TIMESTAMP"，数据对象使用Date。
+
+
+2，同时使用tika和poi的jar包会产生冲突：保留tika，去掉poi（Configure Build Path）。
+
+3，tika类型：
+	application/zip，
+	application/pdf，
+	application/msword，
+	application/vnd.openxmlformats-officedocument.wordprocessingml.document，
+	text/plain; charset=windows-1252，
+	application/x-rar-compressed，
+	application/gzip。
+	
+4，Windows有创建日期，Unix/Linux无创建日期。
+
+
+5，The substring begins at the specified beginIndex and extends to the character at index endIndex - 1. 
+
+6，
+SLF4J: The requested version 1.6 by your slf4j binding is not compatible with [1.5.5, 1.5.6]
+SLF4J: See http://www.slf4j.org/codes.html#version_mismatch for further details.
+

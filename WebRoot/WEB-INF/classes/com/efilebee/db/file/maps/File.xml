@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap
+PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="t_file">
+	<typeAlias alias="FileAlias" type="com.efilebee.db.File" />
+
+	<parameterMap class="FileAlias" id="fileMap">
+		<parameter property="id" jdbcType="NUMBER" />
+		<parameter property="name" jdbcType="VARCHAR" />
+		<parameter property="type" jdbcType="VARCHAR" />
+		<parameter property="role" jdbcType="VARCHAR" />
+		<parameter property="path" jdbcType="VARCHAR" />
+		<parameter property="remark" jdbcType="VARCHAR" />
+		<parameter property="lastModified" jdbcType="NUMBER" />
+	</parameterMap>
+
+	<insert id="i" parameterMap="fileMap">
+		<selectKey resultClass="int" type="post" keyProperty="id" >   
+			<![CDATA[SELECT LAST_INSERT_ID() AS ID ]]>
+		</selectKey> 
+		insert into file(id,name,type,role,path,remark,lastModified) values (?,?,?,?,?,?,?)
+	</insert>
+   
+ 	<select id="s" resultClass="FileAlias">
+		select * from file
+	</select>   
+   
+ 	<select id="sNm" parameterClass="java.lang.String"
+		resultClass="FileAlias">
+		select * from file where name=#value#
+	</select>
+
+ 	<select id="sRl" parameterClass="java.lang.String"
+		resultClass="FileAlias">
+		select * from file where role=#value# or role = ''
+	</select>
+
+	<select id="sId" parameterClass="int"
+		resultClass="FileAlias">
+		select * from file where id=#value#
+	</select>
+   
+	<select id="sMaxLM" resultClass="FileAlias">
+		select * from file order by lastModified desc limit 0,1
+	</select>
+      
+	<select id="sMinLM" resultClass="FileAlias">
+		select * from file order by lastModified asc limit 0,1
+	</select>
+
+ 	<update id="uId" parameterClass="FileAlias">
+		update file set name=#name#,path=#path#,type=#type#,role=#role#,remark=#remark#,lastModified=#lastModified# where id=#id#
+	</update>
+
+	<delete id="dId" parameterClass="int">
+    	DELETE FROM file WHERE id=#value#
+	</delete>
+	
+	<delete id="dNm" parameterClass="java.lang.String">
+    	DELETE FROM file WHERE name=#value#
+	</delete>
+    
+    <delete id="d">
+    	DELETE FROM file
+    </delete>
+</sqlMap>
+

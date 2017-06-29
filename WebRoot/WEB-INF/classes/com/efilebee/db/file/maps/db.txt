@@ -1,0 +1,10 @@
+DROP TABLE file;
+CREATE TABLE file(
+id int(12) AUTO_INCREMENT PRIMARY key,
+name varchar(200),
+type varchar(100),
+role varchar(30),
+path varchar(200),
+remark varchar(200),
+lastModified bigint(15)
+);

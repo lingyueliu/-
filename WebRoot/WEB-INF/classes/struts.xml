@@ -1,0 +1,68 @@
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+     <package name="action" extends="struts-default">
+           
+        <action name="UserLogin" class="userActn" method="UserLogin">
+        	<result name="UserLoginSuccess">/opr/search.jsp</result>
+        	<result name="UserLoginFailure">error.jsp</result>
+        </action> 
+                     
+        <action name="UserLogout" class="userActn" method="UserLogout">
+        	<result name="UserLogout" type="redirect">/login.jsp</result>
+        </action>         
+        
+        <action name="CreateUser" class="userActn" method="CreateUser">
+        	<result name="CreateUserSuccess">/admin/user/create.jsp</result>
+        	<result name="CreateUserFailure">/error.jsp</result>
+        </action>         
+
+        <action name="RetrieveUser" class="userActn" method="RetrieveUser">
+        	<result name="RetrieveUserSuccess">/admin/user/list.jsp</result>
+        	<result name="RetrieveUserFailure">/error.jsp</result>
+        </action>  
+        
+        <action name="CheckUser" class="userActn" method="CheckUser">
+        	<result name="CheckUserSuccess">/admin/user/edit.jsp</result>
+        	<result name="CheckUserFailure">/error.jsp</result>
+        </action>          
+        
+        <action name="UpdateUser" class="userActn" method="UpdateUser">
+        	<result name="UpdateUserSuccess">/admin/user/retrieve.jsp</result>
+        	<result name="UpdateUserFailure">/error.jsp</result>
+        </action>   
+        
+        <action name="DeleteUser" class="userActn" method="DeleteUser">
+        	<result name="DeleteUserSuccess">/admin/user/retrieve.jsp</result>
+        	<result name="DeleteUserFailure">/error.jsp</result>
+        </action>  
+        
+        
+        <action name="CreateIndex" class="crtIdx">
+        	<result name="success">/admin/index/create.jsp</result>
+        	<result name="error">/error.jsp</result>
+        </action> 
+        
+        <action name="UpdateIndex" class="updIdx">
+        	<result name="success">/admin/index/retrieve.jsp</result>
+        	<result name="error">/error.jsp</result>
+        </action>         
+
+        <action name="DeleteIndex" class="delIdx">
+        	<result name="success">/admin/index/retrieve.jsp</result>
+        	<result name="error">/error.jsp</result>
+        </action>          
+
+        <action name="SearchIndex" class="srchIdx">
+        	<result name="success">/admin/index/edit.jsp</result>
+        	<result name="error">/error.jsp</result>
+        </action>         
+                
+        <action name="SearchFile" class="srchFl">
+        	<result name="success">/opr/result.jsp</result>
+        	<result name="error">/error.jsp</result>
+        </action>                    
+                                          
+    </package>
+</struts>

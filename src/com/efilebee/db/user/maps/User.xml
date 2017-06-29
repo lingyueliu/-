@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap
+PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="t_user">
+	<typeAlias alias="UserAlias" type="com.efilebee.db.User" />
+
+
+ 	<select id="sId" parameterClass="int"
+		resultClass="UserAlias">
+		select id,type,role,name,AES_DECRYPT(UNHEX(password),'jiangkewei2.22') as password from user where id=#id#
+	</select>
+
+ 	<select id="sNmPw" parameterClass="java.util.Map"
+		resultClass="UserAlias">
+		select * from user where name=#name# and password=HEX(AES_ENCRYPT(#password#,'jiangkewei2.22'))
+	</select>
+
+
+ 	<select id="sNmRl" parameterClass="java.util.Map"
+		resultClass="UserAlias">
+		select * from user 
+		<dynamic prepend="WHERE">
+			<isNotEmpty prepend="AND" property="name">
+				name=#name#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="role">
+				role=#role#
+			</isNotEmpty>						
+		</dynamic>
+	</select>
+
+
+ 	<update id="uId" parameterClass="UserAlias">
+		update user set name=#name#,password=HEX(AES_ENCRYPT(#password#,'jiangkewei2.22')),type=#type#,role=#role# where id=#id#
+	</update>
+
+ 	<delete id="dId" parameterClass="int">
+		delete from user where id=#id#
+	</delete>		
+	
+ 	<insert id="i" parameterClass="UserAlias">	
+		insert into user(name,password,type,role) values(#name#,HEX(AES_ENCRYPT(#password#,'jiangkewei2.22')),#type#,#role#)
+		<selectKey resultClass="int" keyProperty="id">
+			select last_insert_id() as id
+		</selectKey>
+	</insert>
+
+</sqlMap>
